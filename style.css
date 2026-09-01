@@ -16,6 +16,9 @@ body {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -29,6 +32,7 @@ h1 {
 
 form {
   display: flex;
+  margin-bottom: 25px;
 }
 
 #task-input {
@@ -66,7 +70,7 @@ ul li {
   padding: 12px;
 }
 
- #task-list li span{
+ #task-list li span {
   flex-grow: 1;
   font-size: 15px;
   color: #333333;
