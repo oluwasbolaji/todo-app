@@ -50,8 +50,9 @@ form {
 }
 
 #task-input:focus {
-  background-color:  #c3bebe;
+  background-color: #ffffff;
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 form button {
@@ -83,7 +84,7 @@ ul li {
   padding: 12px;
 }
 
- #task-list li span {
+#task-list li span {
   flex-grow: 1;
   font-size: 15px;
   color: #333333;
@@ -94,6 +95,11 @@ ul li {
   height: 18px;
   cursor: pointer;
   flex-shrink: 0;
+}
+
+#task-list input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  color: #999999;
 }
 
 ul button {
