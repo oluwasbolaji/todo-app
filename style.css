@@ -10,11 +10,14 @@ body {
   line-height: 1.6;
   color: #333333;
   background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .todo-container {
   max-width: 500px;
-  margin: 0 auto;
   padding: 20px;
   background-color: white;
   border-radius: 25px;
