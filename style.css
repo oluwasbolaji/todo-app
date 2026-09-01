@@ -17,6 +17,7 @@ body {
 }
 
 .todo-container {
+  width: 100%;
   max-width: 500px;
   padding: 20px;
   background-color: white;
@@ -41,21 +42,31 @@ form {
 #task-input {
   flex-grow: 1;
   padding: 10px 12px;
-  font-size: 14px;
+  font-size: 18px;
   border-radius: 4px 0 0 4px;
   border: 1px solid #cccccc;
   background-color: #ffffff;
   color: #333333;
 }
 
+#task-input:focus {
+  background-color:  #c3bebe;
+  outline: none;
+}
+
 form button {
-  padding: 10px 6px;
-  font-size: 14px;
-  background-color: #4a90e2;
+  padding: 10px 16px;
+  font-size: 18px;
+  background-color: #3779c6;
   color: white;
   border: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
+}
+
+form button:hover {
+  background-color: #3973b6;
+  color: #4a90e2;
 }
 
 ul {
