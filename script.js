@@ -18,7 +18,7 @@ taskForm.addEventListener('submit', function(event) {
   li.innerHTML = `
     <input type="checkbox">
     <span>${taskText}</span> 
-    <button type="button">Delete</button>
+    <button type="button" class="delete-btn">Delete</button>
   `;
   
   taskList.appendChild(li);
@@ -26,5 +26,10 @@ taskForm.addEventListener('submit', function(event) {
   taskInput.value = '';
 });
 
-
+taskList.addEventListener('click', function(event) {
+  if (event.target.classList.contains('delete-btn')){
+    event.target.parentElement.remove();
+    console.log('Delete button clicked');
+  }
+});
 
