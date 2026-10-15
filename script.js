@@ -59,3 +59,39 @@ function updateTaskCount() {
 }
 updateTaskCount();
 
+const tasks = [
+  {
+    id: 1,
+    text: 'Learn JavaScript',
+    completed: false
+  },
+  {
+    id: 2,
+    text: 'Learn React',
+    completed: true
+  },
+  {
+    id: 3,
+    text: 'Build a project',
+    completed: false
+  }
+];
+console.log(tasks[0].text);
+console.log(tasks[1].text);
+console.log(tasks[1].completed);
+
+function renderTasks() {
+  taskList.innerHTML = '';
+
+  tasks.forEach(function(task) {
+    const li = document.createElement('li');
+    li.innerHTML = `
+    <input type="checkbox" ${task.completed ? 'checked' : ''}>
+    <span>${task.text}</span>
+    <button type="button" class="delete-btn">Delete</button> 
+    `;
+
+    taskList.appendChild(li);
+  });
+}
+renderTasks();
