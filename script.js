@@ -9,22 +9,22 @@ const taskCount = document.querySelector('#task-count');
 taskForm.addEventListener('submit', function(event) {
   event.preventDefault();
   
-  const taskText = taskInput.value;
+  const taskText = taskInput.value.trim();
 
   if (taskText === '') {
     console.log('Please enter a task');
     return;
   }
-  const li = document.createElement('li');
 
-  li.innerHTML = `
-    <input type="checkbox">
-    <span>${taskText}</span> 
-    <button type="button" class="delete-btn">Delete</button>
-  `;
+  const newTask = {
+    id: Date.now(),
+    text: taskText,
+    completed: false
+  };
   
-  taskList.appendChild(li);
+  tasks.push(newTask);
 
+  renderTasks();
   updateTaskCount();
 
   taskInput.value = '';
@@ -57,7 +57,6 @@ function updateTaskCount() {
     taskCount.textContent = `${remainingTasks} tasks remaining`;
   }
 }
-updateTaskCount();
 
 const tasks = [
   {
@@ -95,3 +94,5 @@ function renderTasks() {
   });
 }
 renderTasks();
+updateTaskCount();
+
