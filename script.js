@@ -31,9 +31,20 @@ taskForm.addEventListener('submit', function(event) {
 });
 
 taskList.addEventListener('click', function(event) {
-  if (event.target.classList.contains('delete-btn')){
-    event.target.parentElement.remove();
-    updateTaskCount();
+  if (event.target.classList.contains('delete-btn')) {
+    const taskItem = event.target.parentElement;
+    const taskId = taskItem.dataset.id;   
+
+    const taskIndex = tasks.findIndex(function(task) {
+      return task.id === Number(taskId);
+    });
+
+    if (taskIndex !== -1) {
+      tasks.splice(taskIndex, 1);
+
+      renderTasks();
+      updateTaskCount();
+    }
   }
 });
 
@@ -84,6 +95,8 @@ function renderTasks() {
 
   tasks.forEach(function(task) {
     const li = document.createElement('li');
+
+    li.dataset.id = task.id;
     li.innerHTML = `
     <input type="checkbox" ${task.completed ? 'checked' : ''}>
     <span>${task.text}</span>
@@ -96,3 +109,6 @@ function renderTasks() {
 renderTasks();
 updateTaskCount();
 
+const taskIndex = tasks.findIndex(function(task) {
+  return task.id === 3;
+});
