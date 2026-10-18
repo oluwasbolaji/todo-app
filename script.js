@@ -67,12 +67,9 @@ taskList.addEventListener('change', function(event) {
 });
 
 function updateTaskCount() {
-  const checkboxes = taskList.querySelectorAll('input[type="checkbox"]');
-
-  const uncheckedCheckboxes = [...checkboxes].filter(function(checkbox) {
-    return !checkbox.checked;
-  });
-  const remainingTasks = uncheckedCheckboxes.length;
+  const remainingTasks = tasks.filter(function(task) {
+    return task.completed === false;
+  }).length
 
   if (remainingTasks === 1) {
     taskCount.textContent = '1 task remaining'
