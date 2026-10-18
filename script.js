@@ -50,6 +50,18 @@ taskList.addEventListener('click', function(event) {
 
 taskList.addEventListener('change', function(event) {
   if (event.target.matches('input[type="checkbox"]')) {
+    const taskItem = event.target.parentElement;
+    const taskId = taskItem.dataset.id;
+    
+    const taskIndex = tasks.findIndex(function(task) {
+      return task.id === Number(taskId);
+    });
+
+    if (taskIndex !== -1) {
+      tasks[taskIndex].completed = event.target.checked;
+    }
+
+    renderTasks();
     updateTaskCount();
   }
 });
@@ -109,6 +121,4 @@ function renderTasks() {
 renderTasks();
 updateTaskCount();
 
-const taskIndex = tasks.findIndex(function(task) {
-  return task.id === 3;
-});
+
