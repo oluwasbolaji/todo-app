@@ -82,11 +82,7 @@ function updateTaskCount() {
 
 const savedTasks = localStorage.getItem('tasks');
 
-const tasks = JSON.parse(savedTasks);
-
-console.log(tasks[0].text);
-console.log(tasks[1].text);
-console.log(tasks[1].completed);
+const tasks = savedTasks ? JSON.parse(savedTasks) : [];
 
 function saveTasks() {
   localStorage.setItem('tasks', JSON.stringify(tasks))
