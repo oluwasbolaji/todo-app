@@ -24,6 +24,7 @@ taskForm.addEventListener('submit', function(event) {
   
   tasks.push(newTask);
 
+  saveTasks();
   renderTasks();
   updateTaskCount();
 
@@ -42,6 +43,7 @@ taskList.addEventListener('click', function(event) {
     if (taskIndex !== -1) {
       tasks.splice(taskIndex, 1);
 
+      saveTasks();
       renderTasks();
       updateTaskCount();
     }
@@ -59,10 +61,10 @@ taskList.addEventListener('change', function(event) {
 
     if (taskIndex !== -1) {
       tasks[taskIndex].completed = event.target.checked;
+      saveTasks();
+      renderTasks();
+      updateTaskCount();
     }
-
-    renderTasks();
-    updateTaskCount();
   }
 });
 
@@ -78,26 +80,17 @@ function updateTaskCount() {
   }
 }
 
-const tasks = [
-  {
-    id: 1,
-    text: 'Learn JavaScript',
-    completed: false
-  },
-  {
-    id: 2,
-    text: 'Learn React',
-    completed: true
-  },
-  {
-    id: 3,
-    text: 'Build a project',
-    completed: false
-  }
-];
+const savedTasks = localStorage.getItem('tasks');
+
+const tasks = JSON.parse(savedTasks);
+
 console.log(tasks[0].text);
 console.log(tasks[1].text);
 console.log(tasks[1].completed);
+
+function saveTasks() {
+  localStorage.setItem('tasks', JSON.stringify(tasks))
+};
 
 function renderTasks() {
   taskList.innerHTML = '';
