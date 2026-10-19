@@ -80,9 +80,18 @@ function updateTaskCount() {
   }
 }
 
-const savedTasks = localStorage.getItem('tasks');
+let tasks = [];
 
-const tasks = savedTasks ? JSON.parse(savedTasks) : [];
+try {
+  const savedTasks = localStorage.getItem('tasks');
+
+  if (savedTasks) {
+    tasks = JSON.parse(savedTasks);
+  }
+} catch (error) {
+  console.error('Could not load saved tasks:', error);
+  tasks = [];
+}
 
 function saveTasks() {
   localStorage.setItem('tasks', JSON.stringify(tasks))
