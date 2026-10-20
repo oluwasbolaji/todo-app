@@ -100,6 +100,14 @@ function saveTasks() {
 function renderTasks() {
   taskList.innerHTML = '';
 
+  if (tasks.length === 0) {
+    const emptyMessage = document.createElement('li');
+    emptyMessage.classList.add('empty-state');
+    emptyMessage.textContent = 'No tasks yet. Add your first task!';
+
+    taskList.appendChild(emptyMessage);
+  }
+
   tasks.forEach(function(task) {
     const li = document.createElement('li');
 
@@ -116,7 +124,7 @@ function renderTasks() {
     deleteButton.type = 'button';
     deleteButton.classList.add('delete-btn');
     deleteButton.textContent = 'Delete';
-    
+
     li.appendChild(checkbox);
     li.appendChild(taskText);
     li.appendChild(deleteButton);

@@ -119,3 +119,13 @@ ul button {
   font-size: 13px;
   color: #777777;
 }
+
+.empty-state {
+  display: block;
+  text-align: center;
+  color: #777;
+  padding: 15px;
+  list-style: none;
+  width: 100%;
+  box-sizing: border-box;
+}
