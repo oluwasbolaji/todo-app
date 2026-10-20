@@ -104,12 +104,23 @@ function renderTasks() {
     const li = document.createElement('li');
 
     li.dataset.id = task.id;
-    li.innerHTML = `
-    <input type="checkbox" ${task.completed ? 'checked' : ''}>
-    <span>${task.text}</span>
-    <button type="button" class="delete-btn">Delete</button> 
-    `;
 
+    const taskText = document.createElement('span');
+    taskText.textContent = task.text;
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = task.completed;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.type = 'button';
+    deleteButton.classList.add('delete-btn');
+    deleteButton.textContent = 'Delete';
+    
+    li.appendChild(checkbox);
+    li.appendChild(taskText);
+    li.appendChild(deleteButton);
+    
     taskList.appendChild(li);
   });
 }
