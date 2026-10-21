@@ -48,6 +48,26 @@ taskList.addEventListener('click', function(event) {
       updateTaskCount();
     }
   }
+
+  if (event.target.classList.contains('edit-btn')) {
+    const taskItem = event.target.parentElement;
+    const taskId = taskItem.dataset.id;
+    
+    const taskIndex = tasks.findIndex(function(task) {
+      return task.id === Number(taskId);
+    });
+
+    if (taskIndex !== -1) {
+      const currentTask = tasks[taskIndex];
+      const newText = prompt('Edit your task:', currentTask.text);
+      if (newText === null || newText.trim() === '') {
+        return;
+      }
+      currentTask.text = newText.trim();
+      saveTasks();
+      renderTasks();
+    }
+  }
 });
 
 taskList.addEventListener('change', function(event) {
@@ -120,6 +140,11 @@ function renderTasks() {
     checkbox.type = 'checkbox';
     checkbox.checked = task.completed;
 
+    const editButton = document.createElement('button');
+    editButton.type = 'button';
+    editButton.classList.add('edit-btn');
+    editButton.textContent = 'Edit'
+
     const deleteButton = document.createElement('button');
     deleteButton.type = 'button';
     deleteButton.classList.add('delete-btn');
@@ -127,6 +152,7 @@ function renderTasks() {
 
     li.appendChild(checkbox);
     li.appendChild(taskText);
+    li.appendChild(editButton);
     li.appendChild(deleteButton);
     
     taskList.appendChild(li);
