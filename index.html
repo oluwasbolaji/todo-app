@@ -14,9 +14,15 @@
       <button type="submit">Add</button>
     </form>
 
-  <ul id="task-list"></ul>
+    <ul id="task-list"></ul>
 
-    <p id="task-count">2 tasks remaining</p>
+    <div class="task-filters">
+      <button type="button" data-filter="all">All</button>
+      <button type="button" data-filter="active">Active</button>
+      <button type="button" data-filter="completed">Completed</button>
+    </div>
+
+    <p id="task-count">0 task remaining</p>
   </main>
   <script src="script.js"></script>
 </body>

@@ -5,6 +5,16 @@ const taskInput = document.querySelector('#task-input');
 const taskList = document.querySelector('#task-list');
 
 const taskCount = document.querySelector('#task-count');
+const taskFilters = document.querySelector('.task-filters');
+
+let currentFilter = 'all';
+taskFilters.addEventListener('click', function(event) {
+  if (event.target.matches('button[data-filter]')) {
+    currentFilter = event.target.dataset.filter;
+    console.log(currentFilter);
+    renderTasks();
+  }
+});
 
 taskForm.addEventListener('submit', function(event) {
   event.preventDefault();
@@ -120,6 +130,20 @@ function saveTasks() {
 function renderTasks() {
   taskList.innerHTML = '';
 
+  let filteredTasks = tasks;
+
+  if (currentFilter === 'active') {
+    filteredTasks = tasks.filter(function(task) {
+      return task.completed === false;
+    });
+  } else if (currentFilter === 'completed') {
+    filteredTasks = tasks.filter(function(task) {
+      return task.completed === true;
+    });
+  } else {
+    filteredTasks = tasks;
+  }
+
   if (tasks.length === 0) {
     const emptyMessage = document.createElement('li');
     emptyMessage.classList.add('empty-state');
@@ -128,7 +152,7 @@ function renderTasks() {
     taskList.appendChild(emptyMessage);
   }
 
-  tasks.forEach(function(task) {
+  filteredTasks.forEach(function(task) {
     const li = document.createElement('li');
 
     li.dataset.id = task.id;
