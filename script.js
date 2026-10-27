@@ -11,6 +11,13 @@ let currentFilter = 'all';
 taskFilters.addEventListener('click', function(event) {
   if (event.target.matches('button[data-filter]')) {
     currentFilter = event.target.dataset.filter;
+
+    const filterButtons = taskFilters.querySelectorAll('button[data-filter]');
+    filterButtons.forEach(function(button) {
+      button.classList.remove('active-filter');
+    });
+    event.target.classList.add('active-filter');                        
+   
     console.log(currentFilter);
     renderTasks();
   }
@@ -152,6 +159,14 @@ function renderTasks() {
     taskList.appendChild(emptyMessage);
   }
 
+  if (tasks.length > 0 && filteredTasks.length === 0) {
+    const emptyMessage = document.createElement('li');
+    emptyMessage.classList.add('empty-state');
+    emptyMessage.textContent = 'No tasks match this filter.';
+
+    taskList.appendChild(emptyMessage);
+  }
+
   filteredTasks.forEach(function(task) {
     const li = document.createElement('li');
 
@@ -167,7 +182,7 @@ function renderTasks() {
     const editButton = document.createElement('button');
     editButton.type = 'button';
     editButton.classList.add('edit-btn');
-    editButton.textContent = 'Edit'
+    editButton.textContent = 'Edit';
 
     const deleteButton = document.createElement('button');
     deleteButton.type = 'button';
