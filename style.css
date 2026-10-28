@@ -99,7 +99,7 @@ ul li {
 
 #task-list input[type='checkbox']:checked + span {
   text-decoration: line-through;
-  color: #999999;
+  color: #777777;
 }
 
 ul button {
@@ -150,4 +150,8 @@ ul button {
   background-color: #2563eb;
   color: #ffffff;
   border-color: #2563eb;
+}
+
+#task-list li:has(input[type="checkbox"]:checked) {
+  background-color: #f3f4f6;
 }
