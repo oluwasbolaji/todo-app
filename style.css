@@ -155,3 +155,23 @@ ul button {
 #task-list li:has(input[type="checkbox"]:checked) {
   background-color: #f3f4f6;
 }
+
+/* Inline task editor */
+#task-list input[type="test"] {
+  /* flex: 1; */
+  min-width: 0;
+  padding: 6px 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Save button */
+#task-list .save-btn {
+  background-color: #16a34a;
+}
+
+/* Cancel button */
+#task-list .cancel-btn {
+  background-color: #6b7280;
+}

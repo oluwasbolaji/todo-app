@@ -76,14 +76,63 @@ taskList.addEventListener('click', function(event) {
 
     if (taskIndex !== -1) {
       const currentTask = tasks[taskIndex];
-      const newText = prompt('Edit your task:', currentTask.text);
-      if (newText === null || newText.trim() === '') {
-        return;
-      }
-      currentTask.text = newText.trim();
+
+      const taskText = taskItem.querySelector('span')
+
+      const editInput = document.createElement('input');
+      editInput.type = 'text';
+      editInput.value = currentTask.text;
+
+      taskItem.replaceChild(editInput, taskText);
+
+      const editButton = taskItem.querySelector('.edit-btn');
+      const deleteButton = taskItem.querySelector('.delete-btn');
+
+      editButton.hidden = true;
+      deleteButton.hidden = true
+
+      const saveButton = document.createElement('button');
+      saveButton.type = 'button';
+      saveButton.textContent = 'Save';
+      saveButton.classList.add('save-btn');
+
+      taskItem.appendChild(saveButton);
+
+      const cancelButton = document.createElement('button');
+      cancelButton.type = 'button';
+      cancelButton.textContent = 'Cancel';
+      cancelButton.classList.add('cancel-btn');
+
+      taskItem.appendChild(cancelButton);
+    }
+  }
+
+  if (event.target.classList.contains('save-btn')) {
+    const taskItem = event.target.parentElement;
+    const taskId = taskItem.dataset.id;
+
+    const taskIndex = tasks.findIndex(function(task) {
+      return task.id === Number(taskId);
+    });
+
+    const editInput = taskItem.querySelector('input[type="text"]');
+    const newText = editInput.value.trim();
+
+    if (newText === '') {
+      editInput.focus();
+      return;
+    }
+
+    if (taskIndex !== -1) {
+      tasks[taskIndex].text = newText;
+
       saveTasks();
       renderTasks();
     }
+  }
+
+  if (event.target.classList.contains('cancel-btn')) {
+    renderTasks();
   }
 });
 
